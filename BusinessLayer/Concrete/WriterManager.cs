@@ -41,14 +41,6 @@ namespace BusinessLayer.Concrete
 
         public void WriterUpdate(Writer writer)
         {
-            Writer wu = GetByID(writer.WriterID);
-            wu.WriterName = writer.WriterName;
-            wu.WriterSurName = writer.WriterSurName;
-            wu.WriterMail = writer.WriterMail;
-            wu.WriterPassword = writer.WriterPassword;
-            wu.WriterAbout = writer.WriterAbout;
-            wu.WriterImage = writer.WriterImage;
-            wu.WriterTitle = writer.WriterTitle;
             _writerDal.Update(writer);
         }
     }
