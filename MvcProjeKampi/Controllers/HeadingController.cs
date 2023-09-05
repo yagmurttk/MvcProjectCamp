@@ -34,7 +34,7 @@ namespace MvcProjeKampi.Controllers
                                                 select new SelectListItem
                                                 {
                                                     Text = x.WriterName + " " + x.WriterSurName,
-                                                    Value=x.WriterID.ToString()
+                                                    Value = x.WriterID.ToString()
                                                 }).ToList();
             ViewBag.vlc = valuecategory;
             ViewBag.vlw = valuewriter;
@@ -69,16 +69,7 @@ namespace MvcProjeKampi.Controllers
         public ActionResult DeleteHeading(int id)
         {
             var HeadingValue = hm.GetByID(id);
-            if (HeadingValue.HeadingStatus == true)
-            {
-                HeadingValue.HeadingStatus = false;
-                hm.HeadingDelete(HeadingValue);
-            }
-            else
-            {
-                HeadingValue.HeadingStatus = true;
-                hm.HeadingDelete(HeadingValue);
-            }
+            hm.HeadingDelete(HeadingValue);
             return RedirectToAction("Index");
         }
 
