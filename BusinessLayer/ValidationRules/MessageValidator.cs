@@ -16,7 +16,6 @@ namespace BusinessLayer.ValidationRules
             RuleFor(x => x.Subject).NotEmpty().WithMessage("Konuyu boş geçemezsiniz");
             RuleFor(x => x.MessageContent).NotEmpty().WithMessage("Mesajı boş geçemezsiniz");
             RuleFor(x => x.Subject).MinimumLength(3).WithMessage("Lütfen en az 3 karakter giriniz.");
-            RuleFor(x => x.Subject).MinimumLength(100).WithMessage("Lütfen en az 100 karakter giriniz.");
         }
     
     }
