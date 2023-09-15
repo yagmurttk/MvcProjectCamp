@@ -14,8 +14,9 @@ namespace MvcProjeKampi.Controllers
 
     public class CategoryController : Controller
     {
-        CategoryManager cm = new CategoryManager(new EfCategoryDal());
         // GET: Category
+        CategoryManager cm = new CategoryManager(new EfCategoryDal());
+
         public ActionResult Index()
         {
             return View();
