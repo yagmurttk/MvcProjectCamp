@@ -38,7 +38,7 @@ namespace MvcProjeKampi.Controllers
             var values = mm.GetByID(id);
             return View(values);
         }
-            [HttpGet]
+        [HttpGet]
         public ActionResult NewMessage()
         {
             return View();
