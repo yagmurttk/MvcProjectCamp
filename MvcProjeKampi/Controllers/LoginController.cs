@@ -55,5 +55,11 @@ namespace MvcProjeKampi.Controllers
                 return RedirectToAction("WriterLogin");
             }
         }
+        public ActionResult LogOut()
+        {
+            FormsAuthentication.SignOut();
+            Session.Abandon();
+            return RedirectToAction("Headings", "Default");
+        }
     }
 }

@@ -60,7 +60,7 @@ to get the desired effect
                         @foreach (var item in Model)
                         {
                             <li class="nav-item">
-                                <a href="/WriterPanel/MyHeading/" class="nav-link">
+                                <a href="/Default/Headings/@item.HeadingID" class="nav-link">
                                     <p>
                                         @item.HeadingName
                                     </p>
@@ -76,6 +76,7 @@ to get the desired effect
         <!-- Content Wrapper. Contains page content -->
         <div class="content-wrapper">
             <!-- Main content -->
+           @Html.Action("Index","Default")
             <div class="content">
 
                 <!-- /.container-fluid -->
