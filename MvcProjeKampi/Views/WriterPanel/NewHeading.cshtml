@@ -4,8 +4,10 @@
     ViewBag.Title = "NewHeading";
     Layout = "~/Views/Shared/_WriterLayout.cshtml";
 }
+<h1>@ViewBag.d</h1>
 <br />
 <h1>Yeni Başlık Ekleme Sayfası</h1>
+<br />
 @using (Html.BeginForm("NewHeading", "WriterPanel", FormMethod.Post))
 {
     <div class="form-group">

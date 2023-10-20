@@ -21,7 +21,8 @@ namespace MvcProjeKampi.Controllers
             return View();
         }
         public ActionResult MyHeading(string p)
-        {          
+        {
+            string deger = (string)Session["WriterMail"];
             p = (string)Session["WriterMail"];
             var writeridinfo= c.Writers.Where(x => x.WriterMail == p).Select(y => y.WriterID).FirstOrDefault();
             var values = hm.GetListByWriter(writeridinfo);
@@ -42,6 +43,9 @@ namespace MvcProjeKampi.Controllers
         [HttpPost]
         public ActionResult NewHeading(Heading p)
         {
+            string writermailinfo = (string)Session["WriterMail"];
+            var writeridinfo = c.Writers.Where(x => x.WriterMail == writermailinfo).Select(y => y.WriterID).FirstOrDefault();
+            ViewBag.d = writeridinfo;
             p.HeadingDate = DateTime.Parse(DateTime.Now.ToShortDateString());
             p.WriterID = writeridinfo;
             p.HeadingStatus = true;
