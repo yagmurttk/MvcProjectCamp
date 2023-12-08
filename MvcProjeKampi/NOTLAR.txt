@@ -1,0 +1,193 @@
+﻿MVC : 3 TEMEL YAPIYA DAYANIR.
+
+1) MODEL
+2)VİEW
+3)CONTROLER
+
+1) MODEL: İşin veri tabanına ait Entity dediğimiz kavramların tanımlandığı kısımdır.
+2) VİEW : Görünümler anlamına gelir. Yani işin tasarım Frontend kısmının olduğu alandır.
+3) CONTROLLER: İşin Backend tarafı yani C# kodlama dilinin olduğu alandır.
+
+* ActionResult : Aksiyon sonucunda tanımlanır.
+* ActionResult tanımlıyorsak geriye mutlaka birşey döndermemiz gerekiyor.
+
+* Layout : Sayfanın üst menüsüne denir. Sayfanın sabit kalan kısmı.
+
+* Projemizde yapılacak olan her bir menü controller olarak tutulmalıdır. Solid Prensiplerini ezmemek adına.
+- SOLİD: Yazılım prensipleri, geliştirilen yazılımın esnek yeniden kullanılabilir, sürdürülebilir ve anlaşılır olmasını sağlayan kod tekrarını önleyen prensipler bütünüdür.
+
+# KATMANLARIN OLUŞTURULMASI #
+
+* 4 Katman Vardır.
+
+1) Entity Layer: Projenin  tabloların ve tabloların içindeki sütunların tanımlanacağı ve C# üzerinde class ve properties (özellikler) olarak ifade edileceği yapıların tutulduğu kısımdır.
+
+Örn/ Başlıklar adında bir tablomuz var. Bu tablo C# tarafında Class olacak.
+içerisinde ki Başlık ID,Adı,Tarihi vs. içerikler ise yani sütunların isimleri ise C# tarafında Property olacaktır.
+
+2) Data Access Layer: Veri erişim katmanı olarak geçer.
+
+CRUD dediğimiz işlemler burada yapılacaktır.
+Create = Ekleme
+Read = Okuma
+Update = Güncelleme
+Delete = Silme
+
+3) Business Layer (İş Katmanı olarak da geçer) : Data Access Tarafında projeye çekilmiş olan veriler bu katman da işlenir. Kullanıcıdan gelen veriler önce Business katmanına gider oradan da işlenerek Data Access katmanına aktarılır.Bu katmanda ayrıca bu verilere kimlerin erişeceğini belirliyoruz.
+Kısacası; istediğimiz şeyleri oluşturdukten sonra isteğimizi karşılayıp karşılamadığını kontrol etmek için bu katmana taşırız.
+
+4) Presentation - User Interface (Sunum Katmanı) :
+- Kullanıcı ile etkileşim yapıldığı katmandır. Burada temel amaç kullanıcıya verileri göstermek ve kullanıcıdan gelen verileri Business Katmanı ile Data Access'e iletmektir.
+
+Eklenen her katman yeni bir proje olarak karşımıza gelir.
+- Katmanları eklemek için Solution alanına sağ tık > Add > New Project > Class Library(.Net Framework) > adımlarını seçerek tek tek katmanları oluşturuyoruz.
+
+* Somut olarak tuttuğumuz ifadeleri bir arada tutmak adına Concrete klasörü oluşturuyoruz. EntityLayer Katmanına tanımlanır.
+* Soyut ifadeler ise Abstract klasörü içerisinde tutulur.
+
+- Projemizde her bir sınıf için proportiler olacaktır. Yani içerik başlıkları.
+Örn/ Heading sınıfının proportie leri ID , HeadingName gibi sütun başlıkları olacaktır.
+
+# İLİŞKİLERİN OLUŞTURULMASI #
+
+Örn/ Category tablosu ile Heading tablosu arasında ilişki kurmak için;
+
+- Category sınıfının en altına gel > Properties tanımlayacağız.
+properties in türü ICollection oluyor..
+
+* public ICollection <Heading>
+	Headings {get; set;}
+
+- ICollection = koleksiyon türünde ki interface oluyor.
+<Heading>
+= İlişkilenecek sınıfın adı
+Headings = sınıfın adı
+Category kısmında bunu yaptıktan sonra Heading kısmına da oluşturmak gerekiyor.
+Heading tablosunun altına gel 2 prop tanımlayacağız.
+- Public int ( ilişkili tablonun anahtar ismiyle aynı vermek zorundayız. Yani;
+public int CategoryID {get;set;}
+public virtual Category Category {get;set;} - ( virtual kullan - Category sınıfından Category isminde prop oluştur diyoruz)
+
+// NOT: ilişkileri Oluşturmak İçin;
+
+1 ) Hangi Tabloyu bir diğerine bağlayacaksak önce o tabloda ICollection nesnesi oluşturup içine bağlayacağımız tablonun yani class'ın ismini yazıyoruz. İsminde de s eklenmiş hali oluyor.
+2) Bağladığımız tabloya da giderek bir önceki tablonun property olarak ID sini tanımlıyoruz. Sonra da altına virtual ile bağlanan classın adını yazıyoruz.
+//
+
+Attribute : Özellik anlamına gelir.
+
+# CONTEXT SINIFI #
+
+- Veri tabanına tabloları yansıtmak için hazır olduğu anlamına gelen bir sınıftır. DataAccessLayer katmanına tanımlanır.
+- Context sınıfında tanımlanan propertie ler SQL de tablo ismi olarak karşılık bulacak.
+
+//Not: Her bir katmana Entity Framework 6 yı kurmak gerek. //
+
+* " : " iki nokta = Bir başka sınıftan veya bir başka yerden birşeyleri kalıtsal yoldan alınacağı anlamına gelir.
+Properties tanımlamalarına başlayıp, Entity Layer katmanında tanımladığımız sınıfları tek tek yazmamız gerek.
+
+// NOT: Başka bir katmanın metodlarını properties lerini sınıflarını kullanmak istersek o katmanı kullanmak istediğin katmana referans olarak eklenir.
+Context sınıfında yazılan bütün DbSet türündeki properties leri SQL'e birer tablo olarak yansıtılır.
+//
+
+# WEB CONFİG YAPILANDIRMASI VE BAĞLANTI AYARI #
+
+- Web Config: Projeyle ilgili bazı yapılandırma ayarlarının yapıldığı yerdir.
+Web Config tıkla > System web yazan yerin bitişinin altına gel biten kısma >
+
+<connectionString>
+<add name="Context" connectionString="data source=SQL server adını yaz;  (add name olan kısıma eklenecek isim tabloların veri tabanına yansıtılacak sınıfın ismiyle aynı olmak zorunda)
+ initial catalog=SQL'de projenin adının ne olmasını istiyorsan onu yaz;
+ integrated securitt=true;"
+ providerName="System.Data.SqlClient">
+</add>
+</connectionString>
+
+# MİGRATİONS VE VERİTABANININ OLUŞTURULMASI #
+
+* Migrations = Code First yardımıyla oluşturmuş olduğumuz mimarideki değişiklikleri SQL'e yansıtması için kullanacağımız bir bileşendir.
+* Veri tabanına yansıtmak için package Manager Console üzerinden enable-migrations yazarak Context sınıfımız hangi katmandaysa o katmanı seçerek (yani dataaccesLayer) entere basarak yansıtıyoruz.
+
+# ABSTRACT VE INTERFACE BİLEŞENLERİ #
+
+* Interface = Sınıflara rehberlik edecek yapılar olarak karşımıza çıkar.
+
+// - DRY = "Don't Repeat Yourself" kısaltmasıyla bilinen bir yazılım geliştirme prensibidir. Bu prensip, yazılım geliştirme sürecinde tekrarlanan bilgi, mantık veya işlevlerin azaltılmasını ve elimine edilmesini önerir.
+
+DRY prensibi, kod tekrarını en aza indirerek ve aynı mantığı veya bilgiyi birden fazla yerde yeniden yazmak yerine bir defa tanımlayarak yazılımın daha sürdürülebilir, okunabilir ve bakımı kolay olacak şekilde oluşturulmasını sağlar.
+
+//
+
+Interface leri DataAccessLayer katmanında Abstract (yani soyut ifadelerin tutulacağı yer) klasöründe çalışıyoruz.
+
+Klasörü oluşturduktan sonra Interface ekliyoruz. Interface'e isim verirken başına büyük I harfi gelir.Sonra görevi neyse o görevinde baş harfi büyük kullanılır.Sonunda ise DataAccessLayer katmanında çalışan Interface olduğunu belitmen için sonuna Dal koyulur.kısaltması.
+ Kod tekrarından kaçınmak için yani DRY prensibini kullanmak için Abstract klasörüne IRepositoryDal adında bir Interface oluşturuyoruz. CRUD işlemlerini tek sayfadan yapmak için. Bütün tablolara tek tek Interface tanımlamaya gerek kalmadan tek yapıdan işlemimizi görüyoruz.
+
+* REPOSİTORY = CRUD işlemlerini gerçekleştirebilmek için yapacağımız ifadelerin tutulduğu yerdir.
+
+# GENERİC INTERFACE #
+
+Bütün tablo başlıklarına tek tek Abstract klasörüne Interface tanımlıyoruz ve public hale getiriyoruz. Sonra IRepository Interface'inden kalıtsal olarak bilgileri alıyoruz.
+
+# GENERİC REPOSİTORY #
+
+* Generic repository = Bütün bileşenlerin tamamını kapsar. Bu bölüm ile kod tekrarı yapmıyoruz. 
+
+public class GenericRepository<T> : IRepository<T> where T : class
+
+//GenericRepository'e T değeri alması için <T> değerini yazıyoruz. Interface olarak da değerlerini IRepository den <T>
+	değeri aldırıyoruz. where (şartımız) T değeri class olmalı.
+
+Context sınıfından c değerinde nesne türet.
+DbSet<T> _object; // _object T değerine gelen sınıfı tutuyor.//
+
+* T değerine karşılık gelen sınıfı bulmak için ;
+- ctor tab *2 bas GenericRepository ile iligli bir yapı oluşturur.
+
+# BUSINESS LAYER # (İş Katmanı)
+
+- Diğer katmanları referans olarak verilmesi gerekiyor. References kısmına Add diyerek referanslar eklenir.
+
+* Entity katmanında herhangi bir katman kullanılmaz.
+- Data Access Layer katmanında Entity katmanı kullanılır.
+- BusinessLayer katmanında Entity ve Data Access katmanı kullanılır.
+- Sunum katmanında ise Entity , DataAccess ve BusinessLayer katmanları kullanılır.
+
+* Business Layer katmanında genellikle işin geçerliliği ve kuralların kontrolü yapılır.
+
+* Bütün Entity'ler için BusinessLayer sınıfı oluşturmamız gerek.(Concrete klasörüne)
+- Oluşturduğumuz class da yani manager bölümünde bir nesne türetip sonra sırasıyla her CRUD işlemi için metotlar tanımlıyoruz.
+
+# BOOSTRAP #
+
+- Html tarafında daha güçlü arayüzler oluşturabilmek için kullanılan bir bileşendir.
+- Boostrap i projeye dahil edebilmek için projenin sunum katmanı içerisinde Content klasörünün içinde boostrap dosyaları var ordan min.css olan dosyayı projeye ekliyoruz sürükle bırak.
+
+# FLUENT VALİDATİON #
+
+- Doğrulama kurallarıdır.
+- Validation kurallarını kullanabilmemiz için BusinessLayer katmanına Fluent Validation paketini yüklememiz lazım.
+
+# SingleOrDefault Metot: Bir dizide veya listede sadece BİR DEĞER döndürmek için Ef LinQ metotudur.
+
+# Bütün klasörler oluşturulduktan sonra sıralama tamamen şu şekilde olur;
+- Önce BL katmanında Abstract klasörüne yeni oluşturacağınız tablo eklenir Interface olarak ve ismi Service olarak.
+- kodlar yazılır içerisine
+- Sonra BL katmanında Concrete klasörüne yeni bir class eklenir aynı tablonun Manager adında bir class oluşturulur.
+- Bu oluşturduğumuz Manager class da service diye oluşturduğumuz interface den : iki nokta ile miras alır.
+
+* Code First Kullanarak proje içinde Veritabanına yeni başlıklar vs ekleyebilmek için;
+- İlk önce Entity Layer katmanında Concrete klasörüne oluşturmuş olduğumuz classlarda hangisinde işlem yapacaksak önce ona gelip eklemek istediğimiz başlığı ekliyoruz veya değiştirmek istediklerimizi değiştiriyoruz.
+- Sonra Migration ile değişiklikleri uyguluyoruz.
+ilk önce Add-Migration ile yanına değişiklik adını yazarak örneğin (Add-Migration Mig-Writer-Edit) diyerek entere bas.
+- Sonra update-database ile değişiklikleri güncelle diyoruz.
+
+* SESSION : 
+- ValueNumber = Seçmiş olduğumuz değerin ID sidir.
+- DisplayNumber = Seçmiş olduğum değerin görünüm kısmıdır.
+
+
+
+
+
+
