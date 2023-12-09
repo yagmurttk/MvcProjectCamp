@@ -183,8 +183,14 @@ ilk önce Add-Migration ile yanına değişiklik adını yazarak örneğin (Add-
 - Sonra update-database ile değişiklikleri güncelle diyoruz.
 
 * SESSION : 
+
 - ValueNumber = Seçmiş olduğumuz değerin ID sidir.
 - DisplayNumber = Seçmiş olduğum değerin görünüm kısmıdır.
+
+Popup Kullanımı: 
+
+PARTİAL VİEW : Bu işlem controller tarafında yapılır. Oluşturulan controller da view eklerken Crate as a partial view seçmek gerekir.
+
 
 
 
