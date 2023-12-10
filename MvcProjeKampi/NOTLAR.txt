@@ -191,6 +191,9 @@ Popup Kullanımı:
 
 PARTİAL VİEW : Bu işlem controller tarafında yapılır. Oluşturulan controller da view eklerken Crate as a partial view seçmek gerekir.
 
+Sender: Gönderen
+Reciver : Alıcı
+
 
 
 
