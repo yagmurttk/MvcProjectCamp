@@ -15,9 +15,9 @@ namespace MvcProjeKampi.Controllers
         // GET: WriterPanelContent
         ContentManager cm = new ContentManager(new EfContentDal());
         Context c = new Context();
+
         public ActionResult MyContent(string p)
-        {
-                     
+        {                     
             p = (string)Session["WriterMail"];
             var writeridinfo = c.Writers.Where(x => x.WriterMail == p).Select(y => y.WriterID).FirstOrDefault();
             var contentvalues = cm.GetListByWriter(writeridinfo);
