@@ -19,6 +19,7 @@ namespace MvcProjeKampi.Controllers
         CategoryManager cm = new CategoryManager(new EfCategoryDal());
         WriterManager wm = new WriterManager(new EfWriterDal());
         Context c = new Context();
+
         [HttpGet]
         public ActionResult WriterProfile(int id = 0)
         {

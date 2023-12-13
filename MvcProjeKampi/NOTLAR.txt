@@ -182,7 +182,7 @@ DbSet<T> _object; // _object T değerine gelen sınıfı tutuyor.//
 ilk önce Add-Migration ile yanına değişiklik adını yazarak örneğin (Add-Migration Mig-Writer-Edit) diyerek entere bas.
 - Sonra update-database ile değişiklikleri güncelle diyoruz.
 
-* SESSION : 
+
 
 - ValueNumber = Seçmiş olduğumuz değerin ID sidir.
 - DisplayNumber = Seçmiş olduğum değerin görünüm kısmıdır.
@@ -194,7 +194,37 @@ PARTİAL VİEW : Bu işlem controller tarafında yapılır. Oluşturulan control
 Sender: Gönderen
 Reciver : Alıcı
 
+* 404 hatası sayfa yolunda bir hata olduğunu gösterir.
+proje bittiğinde Web config içerisinde ki <customErrors mode="Off"> kısmını On yapıp hata sayfalarını aktif et
 
+* Authentication ve Session : 
+* SESSION : (Oturum yönetimi)
+
+- Bir sayfaya giriş iznimiz yoksa onu farklı bir sayfaya yönlendirmek için web config sayfasına gelip authentication işlemi gerçekleştiriyoruz.
+
+ <authentication mode="Forms">
+		  <forms loginUrl="/Login/WriterLogin/"> </forms>		  
+	  </authentication>  // şeklinde yazıyoruz.
+
+LoginUrl komutu: bir yetkisiz sayfaya giriş yapmak istediğimiz de bizi yönlendiren sayfadır.
+
+# ROLLEME İŞLEMİ #
+
+Örneğin//  
+A rolüne sahip kişi abcd bölümlerini görebilir
+B rolüne sahip kişi efgh bölümlerini görebilir.
+
+- ilk önce UI katmanına Roles isminde bir klasör ekliyoruz. Klasöre sağ tuş yeni bir class ekliyoruz.
+sonra tıpkı interface deki gibi implement ediyoruz hazır yapıyı. Sonra hazır yapının içerisindeki
+GetRolesForUser metodu yani kullanıcılar için rol alma komutuna kodlarımızı yazıyoruz.
+
+bu işlemi yaptıktan sonra yine web config sayfasına gelip websystem içerisine RoleManager tagını yazıyoruz.
+
+<roleManager enabled="true" defaultProvider="TestRoleProvider">
+		  <providers>
+			  <add name="TestRoleProvider" type="MvcProjeKampi.Roles.AdminRoleProvider"/>
+		  </providers>
+	  </roleManager>
 
 
 
