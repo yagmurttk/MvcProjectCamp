@@ -227,8 +227,10 @@ bu işlemi yaptıktan sonra yine web config sayfasına gelip websystem içerisin
 	  </roleManager>
 
 # Session Allow Anonymous #
+
 UI katmanında Global.asax a gelip en üste 
- GlobalFilters.Filters.Add(new AuthorizeAttribute()); yazıyoruz. (authorize ı proje seviyesine çıkarmış oluyoruz.)
+
+ GlobalFilters.Filters.Add(new AuthorizeAttribute()); yazıyoruz. (authorize'ı proje seviyesine çıkarmış oluyoruz.)
  bir sayfayı authorize dan muaf tutmak için Allow Anonymous u kullanıyoruz.hangi sayfayı muaf tutacaksak oraya yazacağız.
  Örn// LoginController ı muaf tutmak istiyorsak login controller a gelip kodu oraya yazacağız.
 
