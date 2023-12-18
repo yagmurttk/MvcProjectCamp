@@ -234,6 +234,9 @@ UI katmanında Global.asax a gelip en üste
  bir sayfayı authorize dan muaf tutmak için Allow Anonymous u kullanıyoruz.hangi sayfayı muaf tutacaksak oraya yazacağız.
  Örn// LoginController ı muaf tutmak istiyorsak login controller a gelip kodu oraya yazacağız.
 
+# SAYFALAMA İŞLEMİ ( PAGİNG İŞLEMİ) #
+-
+
 
 
 
