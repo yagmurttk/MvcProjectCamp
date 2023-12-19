@@ -237,6 +237,5 @@ UI katmanında Global.asax a gelip en üste
 # SAYFALAMA İŞLEMİ ( PAGİNG İŞLEMİ) #
 -
 
-
-
-
+# IFRAME #
+- Örn/ Google harita bilgisi ekleme veya web sitesine youtube dan bir video eklemek için kullanılan yapılara denir.

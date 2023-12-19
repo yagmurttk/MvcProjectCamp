@@ -2182,6 +2182,9 @@
     <Content Include="AdminLTE-3.0.4\WebVitrin\css\simpleLightbox.css" />
     <Content Include="AdminLTE-3.0.4\WebVitrin\css\snow.css" />
     <Content Include="AdminLTE-3.0.4\WebVitrin\css\style.css" />
+    <Content Include="AdminLTE-3.0.4\WebVitrin\images\Admin Anasayfa.png" />
+    <Content Include="AdminLTE-3.0.4\WebVitrin\images\Admin Girişi.png" />
+    <Content Include="AdminLTE-3.0.4\WebVitrin\images\Admin Mesajlar.png" />
     <Content Include="AdminLTE-3.0.4\WebVitrin\images\banner.jpg" />
     <Content Include="AdminLTE-3.0.4\WebVitrin\images\close.png" />
     <Content Include="AdminLTE-3.0.4\WebVitrin\images\contact.jpg" />
@@ -2202,6 +2205,12 @@
     <Content Include="AdminLTE-3.0.4\WebVitrin\images\serve.jpg" />
     <Content Include="AdminLTE-3.0.4\WebVitrin\images\stats.jpg" />
     <Content Include="AdminLTE-3.0.4\WebVitrin\images\testimonials.jpg" />
+    <Content Include="AdminLTE-3.0.4\WebVitrin\images\Yazar Başlıklarım.png" />
+    <Content Include="AdminLTE-3.0.4\WebVitrin\images\Yazar Girişi.png" />
+    <Content Include="AdminLTE-3.0.4\WebVitrin\images\Yazar Mesajlar.png" />
+    <Content Include="AdminLTE-3.0.4\WebVitrin\images\Yazar Profil Düzenleme.png" />
+    <Content Include="AdminLTE-3.0.4\WebVitrin\images\Yazar Tüm Başlıklar.png" />
+    <Content Include="AdminLTE-3.0.4\WebVitrin\images\Yazar Yazılarım.png" />
     <Content Include="AdminLTE-3.0.4\WebVitrin\index.html" />
     <Content Include="AdminLTE-3.0.4\WebVitrin\js\aos.js" />
     <Content Include="AdminLTE-3.0.4\WebVitrin\js\bootstrap.js" />
@@ -3061,6 +3070,8 @@
     <Content Include="Views\WriterPanelContent\AddContent.cshtml" />
     <Content Include="Views\WriterPanelContent\ToDoList.cshtml" />
     <Content Include="Views\Home\HomePage.cshtml" />
+    <Content Include="Views\Content\GetAllContent.cshtml" />
+    <Content Include="Views\Heading\HeadingReport.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
