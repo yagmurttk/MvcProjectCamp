@@ -239,3 +239,12 @@ UI katmanında Global.asax a gelip en üste
 
 # IFRAME #
 - Örn/ Google harita bilgisi ekleme veya web sitesine youtube dan bir video eklemek için kullanılan yapılara denir.
+
+# SWEET ALERT KULLANIMI #
+
+- Herhangi bir butona tıkladığınız da karışınıza küçük pencere mesaj kutuları çıkarılmasına denir. 
+popup gibi ama içerisinde mesaj olan
+
+# YETKİLENDİRMELER #
+
+
